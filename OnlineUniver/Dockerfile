@@ -1,14 +1,13 @@
-FROM python:3.10-buster
+FROM python:3.11
 
-ENV PYTHONBUFFERED=1
+WORKDIR /app
 
-WORKDIR /django
+COPY requirements.txt /app/
 
-COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip3 install -r requirements.txt
+COPY . /app/
 
-COPY . .
+EXPOSE 8000
 
-CMD python manage.py runserver 0.0.0.0:8000
-
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
