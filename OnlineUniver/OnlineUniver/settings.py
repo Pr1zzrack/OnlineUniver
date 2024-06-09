@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -46,7 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'modeltranslation',
     'django.contrib.admin',
-
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +150,9 @@ ACCOUNT_FORMS = {
     'signup': 'mainapp.forms.CustomSignupForm',
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
